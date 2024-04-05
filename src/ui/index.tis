@@ -46,7 +46,7 @@ class ConnectStatus: Reactor.Component {
             return translate('connecting_status');
         }
         if (!handler.using_public_server()) return translate('Ready');
-        return <span>{translate("Ready")}, <span .link #setup-server>{translate("setup_server_tip")}</span></span>;
+        return <span>{translate("not_ready_status")}: Error.</span>;
     }
 
     event click $(#start-service) () {
@@ -277,13 +277,14 @@ function getUserName() {
 
 function updateTheme() {
     var root_element = self;
+        
     if (handler.get_option("allow-darktheme") == "Y") {
         // enable dark theme
-        root_element.attributes.toggleClass("darktheme", true);
     } else {
         // disable dark theme
         root_element.attributes.toggleClass("darktheme", false);
     }
+    
 }
 
 class MyIdMenu: Reactor.Component {
@@ -293,8 +294,7 @@ class MyIdMenu: Reactor.Component {
 
     function render() {
         return <div #myid>
-            {this.renderPop()}
-            ID{svg_menu}
+            ID
         </div>;
     }
 
@@ -554,13 +554,13 @@ class App: Reactor.Component
         var is_can_screen_recording = handler.is_can_screen_recording(false);
                 return
             <div .app>
-                    <div .left-pane>
+                <div>
                     <div>
-                        <div .title>Hey bro!</div>
+                        <div .title>Assistance à distance</div>
                         <div .lighter-text>{translate('desk_tip')}</div>
                         <div .your-desktop>
                             <MyIdMenu />
-                            {key_confirmed ? <input type="text" readonly value={formatId(get_id())}/> : translate("Generating ...")}
+                            {key_confirmed ? formatId(get_id()) : translate("Generating ...")}
                         </div>
                         <PasswordArea />
                     </div>
@@ -573,7 +573,7 @@ class App: Reactor.Component
                     {system_error ? <SystemError /> : ""}
                     {!system_error && handler.is_login_wayland() && !handler.current_is_wayland() ? <FixWayland /> : ""}
                     {!system_error && handler.current_is_wayland() ? <ModifyDefaultLogin /> : ""}
-<ConnectStatus @{this.connect_status} />
+                    <ConnectStatus @{this.connect_status} />
                 </div>
                 <div #overlay style="position: absolute;size:*;background:black;opacity:0.5;display:none" />
             </div>;
@@ -1141,6 +1141,7 @@ function self.closing() {
 
 function self.ready() {
     var r = handler.get_size();
+    /*
     if (isReasonableSize(r) && r[2] > 0) {
         var (sx, sy, sw, sh) = view.screenBox(#workarea, #rectw);
         if (r[2] >= sw && r[3] >= sh) {
@@ -1154,6 +1155,8 @@ function self.ready() {
     if (!handler.get_remote_id()) {
         view.focus = $(#remote_id);
     }
+    */
+    centerize(scaleIt(300), scaleIt(450));
     refreshCurrentUser();
     updateTheme();
 }

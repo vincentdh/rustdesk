@@ -3,11 +3,11 @@ pub static ref T: std::collections::HashMap<&'static str, &'static str> =
     [
         ("Status", "Statut"),
         ("Your Desktop", "Votre bureau"),
-        ("desk_tip", "Votre bureau est accessible via l'identifiant et le mot de passe ci-dessous."),
+        ("desk_tip", "Veuillez fournir le numéro de session à votre technicien."),
         ("Password", "Mot de passe"),
         ("Ready", "Prêt"),
         ("Established", "Établi"),
-        ("connecting_status", "Connexion au réseau RustDesk..."),
+        ("connecting_status", "Connexion au réseau..."),
         ("Enable service", "Autoriser le service"),
         ("Start service", "Démarrer le service"),
         ("Service is running", "Le service est en cours d'exécution"),
