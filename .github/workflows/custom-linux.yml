@@ -2,6 +2,14 @@ name: Build for linux only
 
 on:
   workflow_dispatch:
+    inputs:
+      upload-artifact:
+        type: boolean
+        default: true
+      upload-tag:
+        type: string
+        default: "nightly"
+
   workflow_call:
     inputs:
       upload-artifact:
