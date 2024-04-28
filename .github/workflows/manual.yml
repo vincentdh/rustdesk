@@ -1,7 +1,7 @@
 name: Manual Build - Flutter Nightly
 
 on:
-  workflow_call:
+  workflow_dispatch:
     inputs:
       upload-artifact:
         type: boolean
