@@ -1,0 +1,12 @@
+name: Manual Build - Flutter Nightly
+
+on:
+  workflow_call:
+
+jobs:
+  run-flutter-nightly-build:
+    uses: ./.github/workflows/flutter-build.yml
+    secrets: inherit
+    with:
+      upload-artifact: true
+      upload-tag: "nightly"
